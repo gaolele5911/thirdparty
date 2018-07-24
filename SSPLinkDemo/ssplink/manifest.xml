@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Desay SV App Manifest 2.0-->
+<application>
+    <!-- package infos -->
+    <infomation>
+        <id>72</id>
+        <package>sv.g5r2.ssplink</package>
+        <version>1.0.0</version>
+        <build_date>2017-11-1</build_date>
+    </infomation>
+
+    <!-- activity infos -->
+    <activity>
+        <exec>bin/ssplink</exec>
+        <default_mode>default</default_mode>
+    </activity>
+
+    <!-- limitations -->
+    <limitation>
+        <mem_min>32</mem_min> <!-- MB -->
+        <mem_max>64</mem_max> <!-- MB -->
+        <cpu_max>10</cpu_max> <!-- % -->
+    </limitation>
+
+    <!-- support modes -->
+    <mode>
+        <name>default</name>
+        <icon></icon>
+        <alias>
+            <en_US>SSPLink</en_US>
+            <zh_CN>SSPLink</zh_CN>
+            <ja_JP>SSPLink</ja_JP>
+        </alias>
+    </mode>
+</application>

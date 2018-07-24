@@ -1,0 +1,40 @@
+﻿2018/04/19 09:26
+----------------------------------------------------------
+1、将dist文件解压覆盖开发环境中对应的dist文件夹
+2、将Update目录下的文件， 拷贝至U盘根目录；在串口运行 update_program HMI， 升级HMI
+3、本次修改点如下：
+   建立三个快捷方式
+   /storage/app/sv.g5r2.ssplink/bin/ssplink -> /svp/share/ssplink/bin/ssplink   ID：72
+   /storage/app/sv.g5r2.ssplink2/bin/ssplink2 -> /svp/share/ssplink/bin/ssplink2   ID：74
+   /storage/app/sv.g5r2.ssplink2/bin/ssphu -> /svp/share/ssplink/bin/app-hu   ID：73
+
+4、对于OpenGL框架的App， 分辨率范围请参考如下设置
+void SVP_AppFw_Config(SVPAppFw_Config& conf)
+{
+    SVP_INFO_FUNC();
+
+    conf.appfw = "appfw-gui";
+    conf.uifw = "uifw-gles";
+    conf.appid = 73;  //==> 更改为对应的AppID
+    conf.startup_viewid = VID_NAVI_MAIN_VIEW;
+    conf.res_h = 1920; //==> 分辨率大小
+    conf.res_v = 720;  //==> 分辨率大小
+}
+
+=====================================================
+2018/05/14 19:46
+-----------------------------------------------------
+1、增加了以下接口；主机App尚未根据这些状态禁用SspLink按钮，等待东软实施完成后再禁用
+	//SspLink初始化状态 0: NotReady 1: Starting 2: Started
+	void ExtSsp_SetRunStatus(uint8_t initStatus);
+	// 0: Link Stop, 1: Link Started
+	void ExtSsp_SetLinkStatus(uint8_t linkStatus);
+	// 启动 SspLink App
+	void ExtSsp_StartApp(int appid);
+2、增加了以下消息通知：
+	MSG_TOSSP_SHOW,
+	MSG_TOSSP_HIDE,
+   东软在收到 MSG_TOSSP_SHOW 消息时，需根据自身状态，决定要启动哪个App
+3、在/svp/share/ssplink/ 目录下，增加 StartSsplink.sh， 自启动 WL_SSPMain
+4、将CarLife配置为默认不启动
+5、在/svp/bin 目录下，创建快捷链接， 指向 /svp/share/ssplink/bin/qml

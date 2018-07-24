@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/SSPLinkQml">
+        <file>SSPLink/Launcher.qml</file>
+        <file>SSPLink/qmldir</file>
+    </qresource>
+</RCC>

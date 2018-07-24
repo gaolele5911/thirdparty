@@ -1,0 +1,14 @@
+1、相关头文件: ExtNavi.h  KeySoundInterface.h  SVExtDef.h
+   放置路径: /dist/release/svp/include/rn2_ext
+2、相关库文件: libExtNavi.so
+   放置路径: /dist/release/svp/lib/rn2/app
+3、在/storage/app/rn2.g5r2.navi/bin 目录下, 有链接文件navi, 指向导航App可执行文件(/map/extnavi/navi)
+4、导航App的启动:
+   . /svp/etc/svp.env.setup.sh
+   svp.util.app-run 80 default 1
+5、地图存放路径： /map/extnavi/ 
+6、如果地图分区未格式化，可按以下指令格式化
+umount /map
+mkfs.ext4 /dev/mmcblk0p9 -F  
+mount /dev/mmcblk0p9 /map
+
